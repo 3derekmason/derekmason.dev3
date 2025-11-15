@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=Oxygen+Mono&family=Pixelify+Sans:wght@400..700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-pixel: "Pixelify Sans", sans-serif;
+  --font-mono: "Oxygen Mono", monospace;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+label {
+  font-family: var(--font-pixel);
+}
+
+p,
+span,
+a,
+li,
+ul,
+ol,
+blockquote,
+code,
+pre {
+  font-family: var(--font-mono);
+}
+
+.font-pixel {
+  font-family: var(--font-pixel);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
