@@ -30,11 +30,4 @@
 const route = useRoute();
 </script>
 
-<style scoped>
-main {
-  background-image: url("/images/background.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-</style>
+<style scoped></style>
