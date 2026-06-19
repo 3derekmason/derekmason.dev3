@@ -55,7 +55,7 @@
         <div
           class="flex absolute bottom-0 left-0 z-20 justify-center items-center pb-2 w-full h-16 lg:pb-10"
         >
-          <div class="flex gap-8 items-center">
+          <!-- <div class="flex gap-8 items-center">
             <button
               v-for="(pair, index) in imagePairs"
               :key="index"
@@ -64,7 +64,7 @@
               @click="setImageIndex(index)"
               :aria-label="pair.label"
             ></button>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -76,21 +76,21 @@ import { ref, computed, onMounted, onUnmounted } from "vue";
 import type { Subscription } from "rxjs";
 
 const imagePairs = [
-  {
-    main: "/images/background.jpg",
-    pixel: "/images/background_pixel.jpg",
-    label: "Background One",
-  },
+  // {
+  //   main: "/images/background.jpg",
+  //   pixel: "/images/background_pixel.jpg",
+  //   label: "Background One",
+  // },
   {
     main: "/images/bg2.jpg",
     pixel: "/images/bg2_pixel.jpg",
     label: "Background Two",
   },
-  {
-    main: "/images/bg3.jpg",
-    pixel: "/images/bg3_pixel.jpg",
-    label: "Background Three",
-  },
+  // {
+  //   main: "/images/bg3.jpg",
+  //   pixel: "/images/bg3_pixel.jpg",
+  //   label: "Background Three",
+  // },
 ];
 
 const route = useRoute();
@@ -107,7 +107,7 @@ let intervalFn: any = null;
 
 const revealMask = computed(
   () =>
-    `radial-gradient(circle ${revealRadius}px at ${mouseX.value}px ${mouseY.value}px, black 50%, transparent 100%)`
+    `radial-gradient(circle ${revealRadius}px at ${mouseX.value}px ${mouseY.value}px, black 50%, transparent 100%)`,
 );
 
 const preloadImages = () => {
@@ -160,7 +160,7 @@ onMounted(async () => {
           map((event) => ({
             x: event.clientX,
             y: event.clientY,
-          }))
+          })),
         )
         .subscribe(({ x, y }) => {
           mouseX.value = x;

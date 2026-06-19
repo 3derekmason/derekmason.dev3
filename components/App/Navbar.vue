@@ -17,9 +17,9 @@ const navOptions = [
     icon: "music",
   },
   {
-    label: "Games",
+    label: "Arcade",
     href: "/arcade",
-    icon: "game",
+    icon: "arcade",
   },
 ];
 </script>
