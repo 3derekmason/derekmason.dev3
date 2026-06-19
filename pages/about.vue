@@ -1,5 +1,14 @@
 <template>
-  <div class="flex flex-col px-4 py-16 w-full h-full">
-    <h1 class="text-4xl font-bold">About</h1>
+  <div class="flex flex-col w-full max-w-[600px] h-full">
+    <span class="flex gap-4 items-center py-4">
+      <AppIcon name="user" :width="48" :height="48" />
+      <p class="text-3xl">Hi, I'm Derek!</p>
+    </span>
+    <p class="text-lg leading-8">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid in
+      mollitia illo aliquam quia, voluptas esse eaque eveniet deserunt rem
+      temporibus itaque omnis alias quas assumenda, voluptatum nulla, optio
+      ullam?
+    </p>
   </div>
 </template>

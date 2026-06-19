@@ -1,5 +1,6 @@
 <template>
-  <div class="flex flex-col px-4 py-16 w-full h-full">
-    <h1 class="text-4xl font-bold">Arcade</h1>
+  <div class="flex flex-col w-full h-full">
+    <h1 class="text-3xl">Play a Game!</h1>
+    <NuxtLink to="/arcade/play/tetris">Tetris</NuxtLink>
   </div>
 </template>

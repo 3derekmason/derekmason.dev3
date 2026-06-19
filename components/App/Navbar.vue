@@ -26,7 +26,7 @@ const navOptions = [
 
 <template>
   <div
-    class="flex flex-wrap gap-4 justify-center items-center w-full md:justify-around"
+    class="flex flex-wrap gap-4 justify-center items-center w-full max-w-[1200px] md:justify-around"
   >
     <NuxtLink
       v-for="option in navOptions"

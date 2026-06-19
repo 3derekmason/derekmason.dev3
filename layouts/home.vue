@@ -35,22 +35,10 @@
       style="z-index: 30"
     >
       <div class="flex flex-col p-4 w-full max-w-7xl h-full">
-        <AppMenu class="absolute top-4 right-4" />
+        <!-- <AppMenu class="absolute top-4 right-4" /> -->
 
         <div class="flex flex-col w-full h-full">
           <slot />
-          <button
-            v-if="route.path !== '/'"
-            @click="$router.push('/')"
-            class="flex absolute 2xl:top-[4%] top-5 left-5 2xl:left-[8%] justify-center items-center w-10 h-10 rounded-md border transition-all duration-200 bg-surface-950/60 hover:bg-black/90 border-primary-700/50"
-          >
-            <AppIcon
-              name="home"
-              :width="24"
-              :height="24"
-              class="text-primary-100"
-            />
-          </button>
         </div>
         <div
           class="flex absolute bottom-0 left-0 z-20 justify-center items-center pb-2 w-full h-16 lg:pb-10"
@@ -127,15 +115,16 @@ const preloadImages = () => {
 };
 
 const startImageCycle = () => {
-  if (cycleSubscription) {
-    cycleSubscription.unsubscribe();
-  }
-  if (intervalFn) {
-    cycleSubscription = intervalFn(10000).subscribe(() => {
-      currentImageIndex.value =
-        (currentImageIndex.value + 1) % imagePairs.length;
-    });
-  }
+  // -- Currently unused bg image slideshow --
+  // if (cycleSubscription) {
+  //   cycleSubscription.unsubscribe();
+  // }
+  // if (intervalFn) {
+  //   cycleSubscription = intervalFn(10000).subscribe(() => {
+  //     currentImageIndex.value =
+  //       (currentImageIndex.value + 1) % imagePairs.length;
+  //   });
+  // }
 };
 
 const setImageIndex = (index: number) => {
@@ -176,9 +165,9 @@ onUnmounted(() => {
   if (mouseSubscription) {
     mouseSubscription.unsubscribe();
   }
-  if (cycleSubscription) {
-    cycleSubscription.unsubscribe();
-  }
+  // if (cycleSubscription) {
+  //   cycleSubscription.unsubscribe();
+  // }
 });
 </script>
 
