@@ -8,6 +8,7 @@ export const icons = {
     "music": "M8 4h12v16h-8v-8h6V8h-8v12H2v-8h6zm0 10H4v4h4zm10 0h-4v4h4z",
     "arcade": "M2 5h20v14H2zm18 12V7H4v10zM8 9h2v2h2v2h-2v2H8v-2H6v-2h2zm6 0h2v2h-2zm4 4h-2v2h2z",
     "user": "M15 2H9v2H7v6h2V4h6zm0 8H9v2h6zm0-6h2v6h-2zM4 16h2v-2h12v2H6v4h12v-4h2v6H4z",
-    "menu": "M4 6h16v2H4zm0 5h16v2H4zm16 5H4v2h16z"
+    "menu": "M4 6h16v2H4zm0 5h16v2H4zm16 5H4v2h16z",
+    "back": "M8 13v-2h2v2H8Zm2-2V9h2v2h-2Zm0 4v-2h2v2h-2Zm2-6V7h2v2h-2Zm0 8v-2h2v2h-2Zm2-10V5h2v2h-2Zm0 12v-2h2v2h-2Z"
 
 }

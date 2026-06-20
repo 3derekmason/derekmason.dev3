@@ -25,7 +25,7 @@ const navOptions = [
 </script>
 
 <template>
-  <div
+  <nav
     class="flex flex-wrap gap-4 justify-center items-center w-full max-w-[1200px] md:justify-around"
   >
     <NuxtLink
@@ -33,6 +33,7 @@ const navOptions = [
       :key="option.label"
       class="group lg:w-[180px] lg:h-[180px] w-[120px] h-[120px] flex flex-col items-center justify-center rounded-md bg-surface-950/60 hover:bg-black/90 border border-primary-700/50 transition-all duration-200"
       :to="option.href"
+      aria-label="Navigate to {{ option.label }}"
     >
       <AppIcon
         :name="option.icon"
@@ -45,5 +46,5 @@ const navOptions = [
         >{{ option.label }}</span
       >
     </NuxtLink>
-  </div>
+  </nav>
 </template>

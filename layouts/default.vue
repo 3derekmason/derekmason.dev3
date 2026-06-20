@@ -5,18 +5,38 @@
     >
       <div class="flex flex-col p-4 w-full max-w-7xl h-full">
         <!-- <AppMenu class="absolute top-4 right-4" /> -->
-        <div class="flex gap-4 items-end p-4 md:p-12">
-          <NuxtLink
-            v-if="route.path !== '/'"
-            to="/"
-            class="text-primary-50 hover:text-primary-300"
-          >
-            <h1 class="block text-4xl md:hidden">dm</h1>
-            <h1 class="hidden text-4xl md:block">derek mason</h1>
-          </NuxtLink>
-          <h1 class="text-3xl text-primary-300">
-            /{{ route.path.split("/").pop() }}
-          </h1>
+        <div class="flex gap-4 justify-between items-end py-4 md:p-12">
+          <div class="flex gap-4 items-end">
+            <NuxtLink
+              v-if="route.path !== '/'"
+              to="/"
+              class="flex gap-2 items-center text-primary-50 hover:text-primary-300"
+              aria-label="Navigate to Home"
+            >
+              <AppIcon name="back" :width="24" :height="24" class="md:hidden" />
+              <h1 class="block text-4xl md:hidden">dm</h1>
+              <h1 class="hidden text-4xl md:block">derek mason</h1>
+            </NuxtLink>
+            <h1 class="text-4xl text-primary-300">/{{ currentRoute }}</h1>
+          </div>
+          <nav class="hidden gap-2 items-end md:flex">
+            <template v-for="(navRoute, i) in allRoutes" :key="navRoute">
+              <NuxtLink
+                v-if="!isCurrentRoute(navRoute)"
+                :to="`/${navRoute}`"
+                class="text-primary-50 hover:text-primary-300"
+                aria-label="Navigate to {{ navRoute }}"
+              >
+                {{ navRoute }}
+              </NuxtLink>
+              <p class="underline opacity-60" v-else aria-label="Current Route">
+                {{ navRoute }}
+              </p>
+              <span v-if="i !== allRoutes.length - 1" class="opacity-60"
+                >/</span
+              >
+            </template>
+          </nav>
         </div>
 
         <div
@@ -32,6 +52,9 @@
 
 <script setup lang="ts">
 const route = useRoute();
+const currentRoute = computed(() => route.path.split("/").pop());
+const allRoutes = ["about", "projects", "music", "arcade"];
+const isCurrentRoute = (route: string) => route === currentRoute.value;
 </script>
 
 <style scoped></style>
