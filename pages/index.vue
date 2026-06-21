@@ -5,9 +5,13 @@
     <div
       class="flex justify-start items-center p-4 md:p-12 w-full max-w-[1200px]"
     >
-      <div class="flex gap-2 items-end type">
-        <h1 class="text-4xl">derek mason</h1>
-        <h1 class="text-3xl text-primary-300">/</h1>
+      <div class="flex gap-2 items-end">
+        <h1 class="text-4xl">{{ introPlayed ? title : currentTitle }}</h1>
+        <h1
+          :class="`text-4xl text-primary-300 ${showCursor ? 'blink' : 'enter'}`"
+        >
+          /
+        </h1>
       </div>
     </div>
     <AppNavbar />
@@ -15,22 +19,38 @@
 </template>
 
 <script setup lang="ts">
+import { useStateStore } from "~/store/state";
+import { storeToRefs } from "pinia";
 definePageMeta({
   layout: "home",
+});
+
+const state = useStateStore();
+
+const { introPlayed } = storeToRefs(state);
+
+const title = ref("derek mason");
+const splitTitle = ref(title.value.split(""));
+const currentTitle = ref("");
+const showCursor = ref(false);
+
+onMounted(() => {
+  if (introPlayed.value) {
+    showCursor.value = true;
+    return;
+  }
+
+  setInterval(() => {
+    currentTitle.value += splitTitle.value.shift() || "";
+  }, 100);
+  setInterval(() => {
+    showCursor.value = true;
+    state.setIntroPlayed(true);
+  }, 1200);
 });
 </script>
 
 <style scoped>
-.home {
-  z-index: 20;
-}
-
-@keyframes typewriter {
-  to {
-    width: 11ch;
-  }
-}
-
 @keyframes blink {
   0%,
   100% {
@@ -41,14 +61,19 @@ definePageMeta({
   }
 }
 
-.type h1:first-child {
-  overflow: hidden;
-  white-space: nowrap;
-  width: 0;
-  animation: typewriter 1.5s steps(11, end) forwards;
+@keyframes shrinkIn {
+  from {
+    font-size: 64px;
+  }
+  to {
+    font-size: 36px;
+  }
 }
 
-.type h1:last-child {
-  animation: blink 1s step-end infinite;
+.blink {
+  animation: blink 1.5s step-end infinite;
+}
+.enter {
+  animation: shrinkIn 1.2s forwards;
 }
 </style>
