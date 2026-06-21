@@ -6,7 +6,7 @@
       <div class="flex flex-col p-4 w-full max-w-7xl h-full">
         <!-- <AppMenu class="absolute top-4 right-4" /> -->
         <div class="flex gap-4 justify-between items-end py-4 md:p-12">
-          <div class="flex gap-4 items-end">
+          <div class="flex gap-2 items-end">
             <NuxtLink
               v-if="route.path !== '/'"
               to="/"
