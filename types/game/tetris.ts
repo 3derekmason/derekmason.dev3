@@ -9,4 +9,4 @@ export interface Key {
     code: string | undefined;
 }
 
-export type Brick = number[][];
+export type Brick = { value: number[][], color: string };

@@ -7,6 +7,7 @@ export const PLAYER = 1;
 export const BALL = 2;
 export const BRICK = 3;
 export const PADDLE_HALF = 1;
+export const PADDLE_SPEED = 2;
 
 export const createInitialPlayer = (): Player => ({
     x: gameSize - 2,
@@ -34,8 +35,8 @@ export const createBricks = (): GameObject[] => {
 };
 
 export const movePlayer = (player: Player, key: string): Player => {
-    if (key === 'ArrowLeft') return { ...player, y: Math.max(PADDLE_HALF, player.y - 1) };
-    if (key === 'ArrowRight') return { ...player, y: Math.min(gameSize - 1 - PADDLE_HALF, player.y + 1) };
+    if (key === 'ArrowLeft') return { ...player, y: Math.max(PADDLE_HALF, player.y - PADDLE_SPEED) };
+    if (key === 'ArrowRight') return { ...player, y: Math.min(gameSize - 1 - PADDLE_HALF, player.y + PADDLE_SPEED) };
     return player;
 };
 

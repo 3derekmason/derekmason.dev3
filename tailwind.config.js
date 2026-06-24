@@ -3,7 +3,7 @@ export default {
   content: [
     "./components/**/*.{js,vue,ts}",
     "./layouts/**/*.vue",
-    "./pages/**/*.vue",
+    "./pages/**/*.{js,vue,ts}",
     "./plugins/**/*.{js,ts}",
     "./app.vue",
     "./error.vue",
@@ -51,6 +51,13 @@ export default {
         800: "#27272a",
         900: "#18181b",
         950: "#09090b",
+      },
+      tetris: {
+        a: "#dc2626",
+        b: "#16a34a",
+        c: "#2563eb",
+        d: "#ea580c",
+        e: "#facc15",
       },
     },
   },

@@ -1,18 +1,19 @@
 <template>
-  <div class="flex flex-col gap-6 justify-center items-center py-12">
-    <h1 class="text-3xl font-bold tracking-widest uppercase text-surface-50">
-      Tetris
-    </h1>
+  <div class="flex flex-col gap-6 justify-center items-center py-12 w-full">
+    <h1 class="text-3xl tracking-widest uppercase text-surface-50">Tetris</h1>
 
     <div class="flex gap-8 items-start">
       <!-- Game board -->
-      <div class="relative p-1 border-2 border-surface-600 bg-surface-800">
+      <div
+        class="relative p-1 border-2 border-surface-700 bg-surface-950"
+        :class="{ 'opacity-50': !isGameStarted }"
+      >
         <div v-for="(row, i) in gameFrame" :key="i" class="flex">
           <div
             v-for="(cell, j) in row"
             :key="j"
             class="m-px w-6 h-6 transition-colors duration-75"
-            :class="cell === BRICK ? 'bg-primary-400' : 'bg-surface-700'"
+            :class="cell !== 0 ? BRICK_COLORS[cell] : 'bg-surface-900'"
           />
         </div>
 
@@ -29,20 +30,19 @@
             </p>
             <p class="text-sm text-slate-300">Score: {{ gameState.score }}</p>
             <button
-              class="px-5 py-2 mt-2 font-semibold text-white rounded transition-colors bg-primary-500"
+              class="px-5 py-2 mt-2 font-semibold text-white transition-colors bg-primary-500"
               @click="restart"
             >
               Play Again
             </button>
           </div>
         </Transition>
+        <ArcadeStart @start="startGame" v-if="!isGameOver && !isGameStarted" />
       </div>
 
       <!-- Sidebar -->
       <div class="flex flex-col gap-4 min-w-[100px]">
-        <div
-          class="p-4 text-center rounded border bg-surface-800 border-surface-600"
-        >
+        <div class="p-4 text-center border bg-surface-900 border-surface-700">
           <p class="mb-1 text-xs tracking-widest uppercase text-surface-400">
             Score
           </p>
@@ -52,7 +52,7 @@
         </div>
 
         <div
-          class="p-4 space-y-1 text-xs rounded border bg-surface-800 border-surface-600 text-surface-400"
+          class="p-4 space-y-1 text-xs border bg-surface-900 border-surface-700 text-surface-400"
         >
           <p class="mb-2 font-semibold text-surface-300">Controls</p>
           <p>← → Move</p>
@@ -71,7 +71,7 @@ import { scan, startWith, map, tap, takeWhile, finalize } from "rxjs/operators";
 import type { Subscription } from "rxjs";
 import type { State, Brick, Key } from "@/types/game/tetris";
 import {
-  BRICK,
+  BRICK_COLORS,
   clearGame,
   validGame,
   validBrick,
@@ -85,21 +85,22 @@ import {
   resetKey,
 } from "./game";
 
-// ── Reactive state ────────────────────────────────────────────────────────────
+definePageMeta({
+  layout: "arcade",
+});
 
 const gameState = ref<State>({ ...initialState, game: clearGame() });
 const brick = ref<Brick>(randomBrick());
 const isGameOver = ref(false);
+const isGameStarted = ref(false);
 let subscription: Subscription | null = null;
-
-// ── Computed display frame ────────────────────────────────────────────────────
 
 const gameFrame = computed(() => {
   const frame = clearGame();
   gameState.value.game.forEach((r, i) =>
     r.forEach((c, j) => (frame[i][j] = c)),
   );
-  validBrick(brick.value).forEach((r, i) =>
+  validBrick(brick.value.value).forEach((r, i) =>
     r.forEach((c, j) => {
       const x = i + gameState.value.x;
       const y = j + gameState.value.y;
@@ -111,9 +112,8 @@ const gameFrame = computed(() => {
   return validGame(frame);
 });
 
-// ── Game loop ─────────────────────────────────────────────────────────────────
-
 function startGame() {
+  isGameStarted.value = true;
   isGameOver.value = false;
   gameState.value = { ...initialState, game: clearGame() };
   brick.value = randomBrick();
@@ -163,7 +163,7 @@ function startGame() {
       gameState.value = { ...state, game: state.game.map((r) => [...r]) };
       brick.value = currentBrick;
     }),
-    takeWhile(([state]) => !state.game[1]?.some((c) => c === BRICK)),
+    takeWhile(([state]) => !state.game[1]?.some((c) => c !== 0)),
     finalize(() => {
       isGameOver.value = true;
     }),
@@ -177,10 +177,6 @@ function restart() {
   subscription = null;
   startGame();
 }
-
-// ── Lifecycle ─────────────────────────────────────────────────────────────────
-
-onMounted(() => startGame());
 onUnmounted(() => subscription?.unsubscribe());
 </script>
 

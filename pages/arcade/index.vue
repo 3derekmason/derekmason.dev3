@@ -6,7 +6,7 @@
     </span>
     <p class="leading-8 md:text-lg">
       <NuxtLink
-        to="https://github.com/3derekmason/"
+        to="https://github.com/3derekmason/derekmason.dev3/tree/main/pages/arcade"
         target="_blank"
         class="underline hover:no-underline text-primary-300"
         >View source code</NuxtLink
@@ -32,13 +32,13 @@ const allGames = [
   {
     name: "Tetris",
     url: "/arcade/tetris",
-    thumbnail: "/images/arcade/tetris.png",
+    thumbnail: "/images/screenshots/tetrisss.png",
     description: "Standard classic Tetris game.",
   },
   {
     name: "Brick Break",
     url: "/arcade/brick-break",
-    thumbnail: "/images/arcade/brick-break.png",
+    thumbnail: "/images/screenshots/bbss.png",
     description: "Classic brick break game.",
   },
 ];
