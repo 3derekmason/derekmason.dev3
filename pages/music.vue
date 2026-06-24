@@ -4,9 +4,9 @@
       <AppIcon name="music" :width="48" :height="48" />
     </span>
     <div class="flex flex-col gap-4 pb-12 h-full">
-      <div class="flex flex-col p-2 w-full rounded-md shadow transition-all duration-200 md:mb-8 aspect-video bg-surface-800/20 hover:shadow-surface-300/60 hover:p-1">
+      <div class="flex flex-col p-2 w-full rounded-md shadow transition-all duration-200 md:mb-8 aspect-video bg-surface-800/20 hover:shadow-surface-300/60 group">
         <NuxtLink to="https://w2bb.vercel.app" target="_blank" class="w-full h-full" aria-label="Navigate to W2BB">
-          <img src="/images/screenshots/w2bbss.png" alt="W2BB" class="object-cover w-full h-full rounded-md" />
+          <img src="/images/screenshots/w2bbss.png" alt="W2BB" class="object-cover overflow-hidden w-full h-full rounded-md transition-all duration-200 group-hover:scale-105" />
         </NuxtLink>
       </div>
       <p class="leading-8 md:text-lg">
@@ -45,7 +45,7 @@
       </p>
       <div class="flex flex-wrap gap-4 justify-center pb-8 w-full">
         <div class="flex flex-col gap-2 w-[calc(50%-16px)] md:w-1/4" v-for="album in getToKnowMeAlbums" :key="album.title">
-          <img :src="album.thumbnail" :alt="album.title" class="object-cover w-full aspect-square" />
+          <NuxtImg :src="album.thumbnail" :alt="album.title" class="object-cover w-full aspect-square" />
           <div class="flex flex-col text-center">
             <p>{{ album.title }}</p>
             <em>{{ album.artist }}</em>

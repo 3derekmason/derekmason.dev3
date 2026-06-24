@@ -4,7 +4,7 @@
     :to="url"
     aria-label="Navigate to {{ name }}"
   >
-    <img
+    <NuxtImg
       :src="thumbnail"
       :alt="name"
       class="object-cover overflow-hidden w-full h-full rounded-md border transition-all duration-200 scale-90 border-surface-600 group-hover:scale-100"
