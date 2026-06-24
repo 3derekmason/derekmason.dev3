@@ -36,10 +36,10 @@ const allGames = [
     description: "Standard classic Tetris game.",
   },
   {
-    name: "Tetris - Remix",
-    url: "/arcade/tetris",
-    thumbnail: "/images/arcade/tetris.png",
-    description: "Tetris with a twist.",
+    name: "Brick Break",
+    url: "/arcade/brick-break",
+    thumbnail: "/images/arcade/brick-break.png",
+    description: "Classic brick break game.",
   },
 ];
 </script>
