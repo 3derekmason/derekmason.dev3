@@ -42,7 +42,9 @@
           class="flex overflow-y-auto flex-col items-center pt-8 w-full h-full md:pt-0 md:px-12"
           style="scrollbar-width: thin"
         >
-          <div class="w-full max-w-[800px] p-4 bg-surface-950/80 relative">
+          <div
+            class="w-full max-w-[800px] p-4 bg-surface-950/80 relative hidden sm:block"
+          >
             <NuxtLink
               to="/arcade"
               class="absolute top-4 left-4"
@@ -52,6 +54,7 @@
             </NuxtLink>
             <slot />
           </div>
+          <ArcadeUnsupported class="flex sm:hidden" />
         </div>
       </div>
     </div>
