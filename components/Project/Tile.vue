@@ -3,6 +3,7 @@
     class="flex overflow-hidden flex-col p-2 w-full rounded-sm shadow-md transition-all duration-200 bg-surface-900/40 group hover:shadow-surface-500 hover:shadow-sm"
     :to="url"
     aria-label="Navigate to {{ name }}"
+    target="_blank"
     v-if="!archived"
   >
     <p
