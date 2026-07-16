@@ -6,7 +6,7 @@
     <div class="flex flex-col gap-4 pb-12 h-full">
       <div class="flex flex-col p-2 w-full rounded-md shadow transition-all duration-200 md:mb-8 aspect-video bg-surface-800/20 hover:shadow-surface-300/60 group">
         <NuxtLink to="https://w2bb.vercel.app" target="_blank" class="w-full h-full" aria-label="Navigate to W2BB">
-          <img src="/images/screenshots/w2bbss.png" alt="W2BB" class="object-cover overflow-hidden w-full h-full rounded-md transition-all duration-200 group-hover:scale-105" />
+          <NuxtImg src="/images/screenshots/w2bbss.png" alt="W2BB" class="object-cover overflow-hidden w-full h-full rounded-md transition-all duration-200 group-hover:scale-105" />
         </NuxtLink>
       </div>
       <p class="leading-8 md:text-lg">
