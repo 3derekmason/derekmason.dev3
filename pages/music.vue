@@ -25,7 +25,7 @@
           >W2BB</a
         >.
       </p>
-      <hr class="my-8"></hr>
+      <!-- <hr class="my-8"></hr>
       <p class="leading-8 md:text-lg">
         I thought it would be cool to build an app to host my own music... and
         got the idea that anyone who wanted to should be able to do the same
@@ -38,7 +38,7 @@
           >blankspace.music</a
         >
         to get started.
-      </p>
+      </p> -->
       <hr class="my-8"></hr>
       <p class="leading-8 md:text-xl text-primary-300">
         5 Albums to get to know me:
