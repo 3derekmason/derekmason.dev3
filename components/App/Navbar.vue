@@ -13,7 +13,8 @@ const navOptions = [
   },
   {
     label: "Music",
-    href: "/music",
+    href: "https://w2bb.vercel.app",
+    target: "_blank",
     icon: "music",
   },
   {
@@ -32,7 +33,8 @@ const navOptions = [
       v-for="option in navOptions"
       :key="option.label"
       class="group lg:w-[180px] lg:h-[180px] w-[120px] h-[120px] flex flex-col items-center justify-center rounded-md bg-surface-950/60 hover:bg-black/90 border border-primary-700/50 transition-all duration-200"
-      :to="option.href"
+      :href="option.href"
+      :target="option.target ? option.target : null"
       aria-label="Navigate to {{ option.label }}"
     >
       <AppIcon
