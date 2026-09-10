@@ -31,11 +31,22 @@ export interface OBJECT {
     variant?: KEY_COLORS | BOOT_TYPE;
 }
 
+/**
+ * A single cell of the resolved board. A cell always has terrain, and may
+ * additionally have an object (chip, key, boot, push-block, ...) sitting
+ * on top of it.
+ */
+export interface CELL {
+    terrain: TILE;
+    object?: OBJECT;
+}
+
 export interface PLAYER {
     x: number;
     y: number;
     boots: BOOT_TYPE[];
     keys: KEY_COLORS[];
+    chipsCollected: number;
 }
 
 export interface LEVEL {
@@ -57,4 +68,10 @@ export enum DIRECTION {
     DOWN = "down",
     LEFT = "left",
     RIGHT = "right",
+}
+
+export enum GAME_STATUS {
+    PLAYING = "playing",
+    WON = "won",
+    LOST = "lost",
 }

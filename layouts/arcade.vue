@@ -47,10 +47,11 @@
           >
             <NuxtLink
               to="/arcade"
-              class="absolute top-4 left-4"
+              class="flex absolute top-4 left-4 items-center"
               aria-label="Navigate Back"
             >
               <AppIcon name="back" :width="24" :height="24" />
+              <AppIcon name="arcade" :width="24" :height="24" />
             </NuxtLink>
             <slot />
           </div>

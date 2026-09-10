@@ -41,5 +41,11 @@ const allGames = [
     thumbnail: "/images/screenshots/bbss.png",
     description: "Classic brick break game.",
   },
+  {
+    name: "Chip's Challenge",
+    url: "/arcade/cc-js",
+    thumbnail: "/images/screenshots/ccjs.png",
+    description: "A work-in-progress clone of the classic puzzle game.",
+  },
 ];
 </script>

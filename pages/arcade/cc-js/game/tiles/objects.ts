@@ -1,8 +1,11 @@
 import { type OBJECT, BOOT_TYPE, KEY_COLORS } from "../types";
 
+/** The object id for chips, used for chip-counting logic elsewhere. */
+export const CHIP_OBJECT_ID = 0;
+
 export const objects: Record<number, OBJECT> = {
     /** The main objective of the game is to collect these */
-    0: {
+    [CHIP_OBJECT_ID]: {
         type: "chip",
     },
     /** KEYS

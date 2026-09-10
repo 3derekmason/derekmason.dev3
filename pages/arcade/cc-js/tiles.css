@@ -12,8 +12,11 @@
 .wall {
   background: #514f50;
 }
+.goal {
+  background: radial-gradient(circle, #e8e6e7, #6cbfaf, #017eaa);
+}
 .gate {
-  background: #fff; /*TODO */
+  background: linear-gradient(to bottom, #e8e6e7, #2c2a2b);
 }
 .door-red {
   background: #993233;
@@ -28,13 +31,13 @@
   background: #e9ca00;
 }
 .fire {
-  background: #fff; /*TODO */
+  background: linear-gradient(to bottom, #d8a309, #c7711e, #993233);
 }
 .sticks {
   background: #fff; /*TODO */
 }
 .water {
-  background: #fff; /*TODO */
+  background: #2e3590;
 }
 .ice {
   background: #fff; /*TODO */
@@ -88,7 +91,8 @@
 /* -------- OBJECT TILES -------- */
 
 .chip {
-  background: #fff; /*TODO */
+  background: #787677;
+  border-radius: 50%;
 }
 .key-red {
   background: #fff; /*TODO */
@@ -103,7 +107,8 @@
   background: #fff; /*TODO */
 }
 .boot-boots {
-  background: #fff; /*TODO */
+  background: #c7711e;
+  border-radius: 50%;
 }
 .boot-flippers {
   background: #fff; /*TODO */

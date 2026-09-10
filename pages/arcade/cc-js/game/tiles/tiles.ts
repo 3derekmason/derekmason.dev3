@@ -47,11 +47,13 @@ export const tiles: Record<number, TILE> = {
         type: "fire",
         requires: BOOT_TYPE.BOOTS,
         isOn: true,
+        damage: true,
     },
     /** You can only step on water safely with flippers */
     9: {
         type: "water",
         requires: BOOT_TYPE.FLIPPERS,
+        damage: true,
     },
     /** You slide on ice unless you have skates */
     10: {
