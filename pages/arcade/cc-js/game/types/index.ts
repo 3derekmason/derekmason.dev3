@@ -41,9 +41,9 @@ export interface PLAYER {
 export interface LEVEL {
     id: number;
     name: string;
-    terrain: TILE[][];
-    objects: OBJECT[];
-    monsters: any[];
+    terrain: number[][];
+    objects: [type: number, location: COORDS][];
+    monsters: [type: number, location: COORDS][];
     player: {
         startX: number;
         startY: number;

@@ -1,0 +1,116 @@
+.tile {
+  width: 56px;
+  aspect-ratio: 1/1;
+  border: 1px solid #c8c6c9;
+}
+
+/* -------- TERRAIN TILES -------- */
+
+.empty {
+  background: #e8e6e7;
+}
+.wall {
+  background: #514f50;
+}
+.gate {
+  background: #fff; /*TODO */
+}
+.door-red {
+  background: #993233;
+}
+.door-green {
+  background: #94b91e;
+}
+.door-blue {
+  background: #3e51ad;
+}
+.door-yellow {
+  background: #e9ca00;
+}
+.fire {
+  background: #fff; /*TODO */
+}
+.water {
+  background: #fff; /*TODO */
+}
+.ice {
+  background: #fff; /*TODO */
+}
+.force {
+  background: #fff; /*TODO */
+}
+.thief {
+  background: #fff; /*TODO */
+}
+.key-thief {
+  background: #fff; /*TODO */
+}
+.dirt {
+  background: #64463c;
+}
+.gravel {
+  background: #fff; /*TODO */
+}
+.recessed-wall {
+  background: #fff; /*TODO */
+}
+.teleport {
+  background: #fff; /*TODO */
+}
+.blue-wall {
+  background: #59729b;
+}
+.toggle {
+  background: #fff; /*TODO */
+}
+.trap {
+  background: #fff; /*TODO */
+}
+.trap-button {
+  background: #fff; /*TODO */
+}
+.cloner {
+  background: #fff; /*TODO */
+}
+.cloner-button {
+  background: #fff; /*TODO */
+}
+.fire-button {
+  background: #fff; /*TODO */
+}
+.force-button {
+  background: #fff; /*TODO */
+}
+
+/* -------- OBJECT TILES -------- */
+
+.chip {
+  background: #fff; /*TODO */
+}
+.key-red {
+  background: #fff; /*TODO */
+}
+.key-green {
+  background: #fff; /*TODO */
+}
+.key-blue {
+  background: #fff; /*TODO */
+}
+.key-yellow {
+  background: #fff; /*TODO */
+}
+.boot-boots {
+  background: #fff; /*TODO */
+}
+.boot-flippers {
+  background: #fff; /*TODO */
+}
+.boot-skates {
+  background: #fff; /*TODO */
+}
+.boot-suction {
+  background: #fff; /*TODO */
+}
+.push-block {
+  background: #4a3765;
+}
