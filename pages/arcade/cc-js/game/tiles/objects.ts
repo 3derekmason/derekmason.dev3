@@ -1,9 +1,13 @@
 import { type OBJECT, BOOT_TYPE, KEY_COLORS } from "../types";
 
 export const objects: Record<number, OBJECT> = {
+    /** The main objective of the game is to collect these */
     0: {
         type: "chip",
     },
+    /** KEYS
+     *  Collect these to open doors of the same color
+     */
     1: {
         type: "key-red",
         variant: KEY_COLORS.RED,
@@ -20,6 +24,7 @@ export const objects: Record<number, OBJECT> = {
         type: "key-yellow",
         variant: KEY_COLORS.YELLOW,
     },
+    /** BOOTS */
     5: {
         type: "boot-boots",
         variant: BOOT_TYPE.BOOTS,
@@ -36,6 +41,9 @@ export const objects: Record<number, OBJECT> = {
         type: "boot-suction",
         variant: BOOT_TYPE.SUCTION,
     },
+    /** You can push these one at a time to make a bridge or divert monsters. 
+     *  If you push this into the water it will form dirt.
+     */
     10: {
         type: "push-block",
     }
