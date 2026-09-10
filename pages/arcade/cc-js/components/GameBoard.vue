@@ -34,12 +34,18 @@
         </div>
       </div>
       <div
-        class="p-2 px-4 text-center border bg-surface-900 border-surface-700"
+        class="flex gap-2 items-center p-2 px-4 text-center border bg-surface-900 border-surface-700"
       >
-        <p class="mb-1 text-xs tracking-widest uppercase text-surface-400">
-          Chips
-        </p>
-        <p class="text-xl font-bold tabular-nums text-surface-50">
+        <div class="relative w-[32px] h-[32px]">
+          <div class="cc-cell-object chip" aria-label="Chips collected"></div>
+        </div>
+        <p
+          class="text-xl font-bold tabular-nums text-surface-50 chip-counter"
+          :class="{ 'chip-counter-pop': chipJustCollected }"
+          :style="{
+            color: player.chipsCollected === totalChips ? '#e9ca00' : '#e8e6e7',
+          }"
+        >
           {{ player.chipsCollected }} / {{ totalChips }}
         </p>
       </div>
@@ -53,7 +59,9 @@
         <div class="cc-board" :style="boardStyle">
           <div v-for="(row, y) in board" :key="y" class="cc-row">
             <div v-for="(cell, x) in row" :key="x" class="cc-cell">
-              <div class="tile" :class="cell.terrain.type" />
+              <div class="tile" :class="cell.terrain.type">
+                <span class="tile-inner"></span>
+              </div>
               <div
                 v-if="cell.object"
                 class="cc-cell-object"
@@ -177,6 +185,28 @@ const KEY_DIRECTIONS: Record<string, DIRECTION> = {
   ArrowRight: DIRECTION.RIGHT,
 };
 
+// Briefly flashes/scales the chip counter whenever a chip is collected.
+const chipJustCollected = ref(false);
+let chipPopTimeout: ReturnType<typeof setTimeout> | null = null;
+
+watch(
+  () => player.value.chipsCollected,
+  (value, oldValue) => {
+    if (value <= oldValue) return; // only pop on pickups, not resets
+
+    if (chipPopTimeout) clearTimeout(chipPopTimeout);
+    // Toggle off first in case a pickup happens again mid-animation, so
+    // re-adding the class always restarts the animation from scratch.
+    chipJustCollected.value = false;
+    requestAnimationFrame(() => {
+      chipJustCollected.value = true;
+    });
+    chipPopTimeout = setTimeout(() => {
+      chipJustCollected.value = false;
+    }, 400);
+  },
+);
+
 const restartButtonRef = ref<HTMLButtonElement | null>(null);
 const nextLevelButtonRef = ref<HTMLButtonElement | null>(null);
 const winExitButtonRef = ref<HTMLButtonElement | null>(null);
@@ -252,6 +282,7 @@ onMounted(() => {
 onUnmounted(() => {
   resizeObserver?.disconnect();
   window.removeEventListener("keydown", onKeydown);
+  if (chipPopTimeout) clearTimeout(chipPopTimeout);
 });
 </script>
 
@@ -353,6 +384,26 @@ onUnmounted(() => {
   width: 32px;
   height: 32px;
   border: 1px solid #787677;
+}
+
+.chip-counter {
+  display: inline-block;
+  transition: color 0.4s ease;
+}
+
+.chip-counter-pop {
+  color: #e9ca00;
+  animation: chip-pop 0.4s ease;
+}
+
+@keyframes chip-pop {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.35);
+  }
 }
 
 .fade-enter-active,

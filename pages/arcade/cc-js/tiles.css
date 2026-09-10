@@ -1,46 +1,135 @@
 .tile {
   width: 56px;
   aspect-ratio: 1/1;
-  border: 1px solid #c8c6c9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* -------- TERRAIN TILES -------- */
 
 .empty {
   background: #e8e6e7;
+  border: 1px solid #c8c6c9;
 }
 .wall {
   background: #514f50;
+  border: 1px solid #2c2a2b;
 }
 .goal {
-  background: radial-gradient(circle, #e8e6e7, #6cbfaf, #017eaa);
+  background-color: #e5e5f7;
+  opacity: 0.8;
+  background: repeating-radial-gradient(
+    circle at 50% 50%,
+    #aa4e99 0,
+    #4a3765 2px,
+    #8281ba 2px,
+    #8281ba 3px,
+    #aa4e99 3px,
+    #4a3765 8px
+  );
+  box-shadow: inset 0 0 0 2px #aa4e99;
 }
 .gate {
-  background: linear-gradient(to bottom, #e8e6e7, #2c2a2b);
+  background-color: #2c2a2b;
+  opacity: 1;
+  background: repeating-linear-gradient(
+    0deg,
+    #aa4e99,
+    #aa4e99 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  border-left: 4px solid #4a3765;
+  border-right: 4px solid #4a3765;
 }
 .door-red {
-  background: #993233;
+  background: #ff004d;
+  border: 1px solid #2c2a2b;
+  box-shadow: inset 0px 0px 0px 12px #514f50;
 }
 .door-green {
-  background: #94b91e;
+  background: #00e436;
+  border: 1px solid #2c2a2b;
+  box-shadow: inset 0px 0px 0px 12px #514f50;
 }
 .door-blue {
-  background: #3e51ad;
+  background: #29adff;
+  border: 1px solid #2c2a2b;
+  box-shadow: inset 0px 0px 0px 12px #514f50;
 }
 .door-yellow {
-  background: #e9ca00;
+  background: #ffec27;
+  border: 1px solid #2c2a2b;
+  box-shadow: inset 0px 0px 0px 12px #514f50;
 }
+
+.door-red .tile-inner,
+.door-green .tile-inner,
+.door-blue .tile-inner,
+.door-yellow .tile-inner {
+  width: 20px;
+  height: 20px;
+  position: relative;
+}
+
+.door-red .tile-inner::before,
+.door-green .tile-inner::before,
+.door-blue .tile-inner::before,
+.door-yellow .tile-inner::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  left: 5px;
+  top: 2px;
+  border-radius: 50%;
+  background: #111;
+}
+
+.door-red .tile-inner::after,
+.door-green .tile-inner::after,
+.door-blue .tile-inner::after,
+.door-yellow .tile-inner::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 10px;
+  left: 7px;
+  top: 9px;
+  background: #111;
+}
+
 .fire {
-  background: linear-gradient(to bottom, #d8a309, #c7711e, #993233);
-}
-.sticks {
-  background: #fff; /*TODO */
+  background: radial-gradient(ellipse at bottom, #d8a309, #c7711e, #993233);
 }
 .water {
-  background: #2e3590;
+  background-color: #5283cc;
+  opacity: 0.8;
+  background-image:
+    linear-gradient(135deg, #3051bf 25%, transparent 25%),
+    linear-gradient(225deg, #3051bf 25%, transparent 25%),
+    linear-gradient(45deg, #3051bf 25%, transparent 25%),
+    linear-gradient(315deg, #3051bf 25%, #5283cc 25%);
+  background-position:
+    10px 0,
+    10px 0,
+    0 0,
+    0 0;
+  background-size: 20px 20px;
+  background-repeat: repeat;
 }
 .ice {
-  background: #fff; /*TODO */
+  background-color: #9fffff;
+  opacity: 0.8;
+  background-size: 10px 10px;
+  background-image: repeating-linear-gradient(
+    45deg,
+    #fff 0,
+    #fff 1px,
+    #9fffff 0,
+    #9fffff 50%
+  );
 }
 .force {
   background: #fff; /*TODO */
@@ -52,7 +141,15 @@
   background: #fff; /*TODO */
 }
 .dirt {
-  background: #64463c;
+  background-color: #885041;
+  opacity: 0.8;
+  background-image:
+    radial-gradient(#2c2a2b 1.5px, transparent 1.5px),
+    radial-gradient(#2c2a2b 1.5px, #885041 1.5px);
+  background-size: 20px 20px;
+  background-position:
+    0 0,
+    10px 10px;
 }
 .gravel {
   background: #fff; /*TODO */
@@ -91,8 +188,23 @@
 /* -------- OBJECT TILES -------- */
 
 .chip {
-  background: #787677;
-  border-radius: 50%;
+  background: linear-gradient(
+    to bottom,
+    #787677,
+    #a2a2a4,
+    #787677,
+    #a2a2a4,
+    #787677
+  );
+  border-radius: 12px;
+  width: 40%;
+  height: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  border: 1px solid #000;
+  box-shadow: 0px 0px 8px 4px #aa4e99;
 }
 .key-red {
   background: #fff; /*TODO */
@@ -107,18 +219,62 @@
   background: #fff; /*TODO */
 }
 .boot-boots {
-  background: #c7711e;
-  border-radius: 50%;
+  background: linear-gradient(to bottom, #c7711e, 80%, #2c2a2b);
+  clip-path: polygon(
+    30% 0,
+    68% 0,
+    68% 48%,
+    73% 58%,
+    88% 65%,
+    100% 72%,
+    100% 88%,
+    92% 96%,
+    12% 96%
+  );
 }
 .boot-flippers {
-  background: #fff; /*TODO */
+  background: linear-gradient(to bottom, #5283cc, 80%, #2c2a2b);
+  clip-path: polygon(
+    30% 0,
+    68% 0,
+    68% 48%,
+    73% 58%,
+    88% 65%,
+    100% 72%,
+    100% 88%,
+    92% 96%,
+    12% 96%
+  );
 }
 .boot-skates {
-  background: #fff; /*TODO */
+  background: linear-gradient(to bottom, #20e0e0, 80%, #2c2a2b);
+  clip-path: polygon(
+    30% 0,
+    68% 0,
+    68% 48%,
+    73% 58%,
+    88% 65%,
+    100% 72%,
+    100% 88%,
+    92% 96%,
+    12% 96%
+  );
 }
 .boot-suction {
-  background: #fff; /*TODO */
+  background: linear-gradient(to bottom, #94b91e, 80%, #2c2a2b);
+  clip-path: polygon(
+    30% 0,
+    68% 0,
+    68% 48%,
+    73% 58%,
+    88% 65%,
+    100% 72%,
+    100% 88%,
+    92% 96%,
+    12% 96%
+  );
 }
 .push-block {
-  background: #4a3765;
+  background: #64463c;
+  box-shadow: inset -2px -4px 0px 0 #2c2a2b;
 }

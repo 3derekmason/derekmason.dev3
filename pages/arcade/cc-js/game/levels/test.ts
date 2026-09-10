@@ -2,7 +2,7 @@ import { type LEVEL } from "../types";
 import { CHIP_OBJECT_ID } from "../tiles/objects";
 
 export const test: LEVEL = {
-    id: 1,
+    id: 999,
     name: "test",
     terrain: [
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -14,13 +14,17 @@ export const test: LEVEL = {
         [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
         [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
         [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+        [1, 4, 5, 6, 7, 0, 10, 10, 10, 1],
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     ],
     objects: [
         [CHIP_OBJECT_ID, [1, 1]],
         [CHIP_OBJECT_ID, [8, 1]],
         [10, [7, 6]],
-        [5, [1, 8]]
+        [5, [1, 8]],
+        [6, [7, 7]],
+        [7, [8, 8]],
+        [8, [8, 7]]
 
     ],
     monsters: [],
