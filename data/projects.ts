@@ -19,7 +19,13 @@ export const projects: Project[] = [
     {
         name: "_music",
         url: "https://blankspacemusic.com",
-        description: "An open source project created with the intention of letting artists host and control their own music library. Features code and no-code tutorial options, data export tool, and further personalization suggestions",
+        description: "Host and control your own music library. Features code and no-code tutorial options, data export tool, and further personalization suggestions",
+        archived: false,
+    },
+    {
+        name: "NewsCL",
+        url: "https://github.com/3derekmason/newsCL",
+        description: "A minimal Terminal User Interface for browsing Hacker News posts and jobs.",
         archived: false,
     },
     {
