@@ -10,7 +10,7 @@
       class="object-cover overflow-hidden w-full h-full rounded-md border transition-all duration-200 scale-90 border-surface-600 group-hover:scale-100"
     />
     <p class="mx-2 mt-2 text-lg font-bold">{{ name }}</p>
-    <p class="mx-4 text-sm text-gray-500 group-hover:hidden">
+    <p class="mx-4 text-sm text-surface-400 group-hover:hidden">
       {{ description }}
     </p>
     <p

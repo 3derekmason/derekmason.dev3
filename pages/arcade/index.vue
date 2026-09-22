@@ -30,16 +30,23 @@ import ArcadeTile from "~/components/Arcade/Tile.vue";
 
 const allGames = [
   {
+    name: "Chip's (JS) Challenge",
+    url: "/arcade/cc-js",
+    thumbnail: "/images/screenshots/ccjsss.png",
+    description:
+      "An evolving clone of the classic puzzle game built with JavaScript and styled entirely with CSS.",
+  },
+  {
     name: "Tetris",
     url: "/arcade/tetris",
     thumbnail: "/images/screenshots/tetrisss.png",
-    description: "Standard classic Tetris game.",
+    description: "Standard classic Tetris game using RxJS.",
   },
   {
     name: "Brick Break",
     url: "/arcade/brick-break",
     thumbnail: "/images/screenshots/bbss.png",
-    description: "Classic brick break game.",
+    description: "Classic brick break game using RxJS.",
   },
 ];
 </script>
