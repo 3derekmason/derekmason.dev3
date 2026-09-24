@@ -22,5 +22,5 @@ export default defineNuxtConfig({
   },
 
   compatibilityDate: "2025-11-15",
-  modules: ["@pinia/nuxt", "@nuxt/image"],
+  modules: ["@pinia/nuxt", "@nuxt/image", '@vercel/analytics'],
 });
