@@ -17,9 +17,9 @@ export const projects: Project[] = [
         image: farmstoreScreenshot,
     },
     {
-        name: "_music",
-        url: "https://blankspacemusic.com",
-        description: "Host and control your own music library. Features code and no-code tutorial options, data export tool, and further personalization suggestions",
+        name: "W2BB",
+        url: "https://wordtobigbird.com",
+        description: "A custom site to host my own music catalog. Listen the songs and sounds I've been playing around with.  More (always) coming soon.",
         archived: false,
     },
     {
@@ -29,7 +29,7 @@ export const projects: Project[] = [
         archived: false,
     },
     {
-        name: "TAOP",
+        name: "TAOP (Demo)",
         url: "https://taop-demo.vercel.app",
         description: `My in progress "build in public" game built combining a JavaScript game engine (Phaser) with full Vue UI components. Check back for more updates!`,
         archived: false,

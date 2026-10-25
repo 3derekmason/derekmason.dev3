@@ -13,7 +13,7 @@ const navOptions = [
   },
   {
     label: "Music",
-    href: "https://w2bb.vercel.app",
+    href: "https://wordtobigbird.com",
     target: "_blank",
     icon: "music",
   },
