@@ -19,19 +19,19 @@ export const projects: Project[] = [
     {
         name: "W2BB",
         url: "https://wordtobigbird.com",
-        description: "A custom site to host my own music catalog. Listen the songs and sounds I've been playing around with.  More (always) coming soon.",
+        description: "A custom site built with Sveltekit to host my own music catalog. Listen tothe songs and sounds I've been playing around with.",
         archived: false,
     },
     {
         name: "NewsCL",
         url: "https://github.com/3derekmason/newsCL",
-        description: "A minimal Terminal User Interface for browsing Hacker News posts and jobs.",
+        description: "A minimal Terminal User Interface for browsing Hacker News posts and jobs. Written in Go.",
         archived: false,
     },
     {
         name: "TAOP (Demo)",
         url: "https://taop-demo.vercel.app",
-        description: `My in progress "build in public" game built combining a JavaScript game engine (Phaser) with full Vue UI components. Check back for more updates!`,
+        description: `My work in progress game built combining a JavaScript game engine (Phaser) with full Vue UI components. Currently creating maps/tilesets using Tiled.`,
         archived: false,
     },
     {
