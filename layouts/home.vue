@@ -5,21 +5,19 @@
   >
     <!-- Main background -->
     <div
-      v-for="(pair, index) in imagePairs"
-      :key="`main-${index}`"
       class="background-layer"
-      :class="{ active: index === currentImageIndex }"
-      :style="{ backgroundImage: `url('${pair.main}')` }"
+      :class="{ 'is-visible': imagesPreloaded }"
+      :style="{
+        backgroundImage: currentPair ? `url('${currentPair.main}')` : 'none',
+      }"
     ></div>
 
     <!-- Pixel overlay -->
     <div
-      v-for="(pair, index) in imagePairs"
-      :key="`pixel-${index}`"
       class="overlay-layer"
-      :class="{ active: index === currentImageIndex }"
+      :class="{ 'is-visible': imagesPreloaded }"
       :style="{
-        backgroundImage: `url('${pair.pixel}')`,
+        backgroundImage: currentPair ? `url('${currentPair.pixel}')` : 'none',
         maskImage: revealMask,
         WebkitMaskImage: revealMask,
       }"
@@ -40,20 +38,6 @@
         <div class="flex flex-col w-full h-full">
           <slot />
         </div>
-        <div
-          class="flex absolute bottom-0 left-0 z-20 justify-center items-center pb-2 w-full h-16 lg:pb-10"
-        >
-          <!-- <div class="flex gap-8 items-center">
-            <button
-              v-for="(pair, index) in imagePairs"
-              :key="index"
-              class="w-8 h-8 rounded-full border transition-all duration-200 bg-primary-500/20 disabled:bg-primary-500/60 border-primary-500/40 disabled:border-primary-500/80"
-              :disabled="index === currentImageIndex"
-              @click="setImageIndex(index)"
-              :aria-label="pair.label"
-            ></button>
-          </div> -->
-        </div>
       </div>
     </div>
   </main>
@@ -64,43 +48,39 @@ import { ref, computed, onMounted, onUnmounted } from "vue";
 import type { Subscription } from "rxjs";
 
 const imagePairs = [
-  // {
-  //   main: "/images/background.jpg",
-  //   pixel: "/images/background_pixel.jpg",
-  //   label: "Background One",
-  // },
+  {
+    main: "/images/background.jpg",
+    pixel: "/images/background_pixel.jpg",
+    label: "Background One",
+  },
   {
     main: "/images/bg2.jpg",
     pixel: "/images/bg2_pixel.jpg",
     label: "Background Two",
   },
-  // {
-  //   main: "/images/bg3.jpg",
-  //   pixel: "/images/bg3_pixel.jpg",
-  //   label: "Background Three",
-  // },
 ];
 
-const route = useRoute();
 const mainRef = ref<HTMLElement | null>(null);
 const mouseX = ref(0);
 const mouseY = ref(0);
-const currentImageIndex = ref(0);
+// Chosen on the client only so every page load gets a fresh pick
+// without a server/client hydration mismatch.
+const currentImageIndex = ref<number | null>(null);
+const currentPair = computed(() =>
+  currentImageIndex.value === null ? null : imagePairs[currentImageIndex.value],
+);
 const revealRadius = 80;
 const imagesPreloaded = ref(false);
 
 let mouseSubscription: Subscription | null = null;
-let cycleSubscription: Subscription | null = null;
-let intervalFn: any = null;
 
 const revealMask = computed(
   () =>
     `radial-gradient(circle ${revealRadius}px at ${mouseX.value}px ${mouseY.value}px, black 50%, transparent 100%)`,
 );
 
-const preloadImages = () => {
-  const imageUrls = imagePairs.flatMap((pair) => [pair.main, pair.pixel]);
-  const promises = imageUrls.map((url) => {
+const preloadImages = (urls: string[]) => {
+  const promises = urls.map((url) => {
     return new Promise((resolve, reject) => {
       const img = new Image();
       img.onload = resolve;
@@ -109,39 +89,21 @@ const preloadImages = () => {
     });
   });
 
-  Promise.all(promises).then(() => {
+  Promise.allSettled(promises).then(() => {
     imagesPreloaded.value = true;
   });
 };
 
-const startImageCycle = () => {
-  // -- Currently unused bg image slideshow --
-  // if (cycleSubscription) {
-  //   cycleSubscription.unsubscribe();
-  // }
-  // if (intervalFn) {
-  //   cycleSubscription = intervalFn(10000).subscribe(() => {
-  //     currentImageIndex.value =
-  //       (currentImageIndex.value + 1) % imagePairs.length;
-  //   });
-  // }
-};
-
-const setImageIndex = (index: number) => {
-  currentImageIndex.value = index;
-  startImageCycle();
-};
-
 onMounted(async () => {
-  if (process.client) {
-    preloadImages();
+  if (import.meta.client) {
+    const index = Math.floor(Math.random() * imagePairs.length);
+    currentImageIndex.value = index;
+    preloadImages([imagePairs[index].main, imagePairs[index].pixel]);
 
     if (mainRef.value) {
       // Import client side to prevent server side errors
-      const { fromEvent, interval } = await import("rxjs");
+      const { fromEvent } = await import("rxjs");
       const { map, throttleTime } = await import("rxjs/operators");
-
-      intervalFn = interval;
 
       mouseSubscription = fromEvent<MouseEvent>(mainRef.value, "mousemove")
         .pipe(
@@ -155,8 +117,6 @@ onMounted(async () => {
           mouseX.value = x;
           mouseY.value = y;
         });
-
-      startImageCycle();
     }
   }
 });
@@ -165,9 +125,6 @@ onUnmounted(() => {
   if (mouseSubscription) {
     mouseSubscription.unsubscribe();
   }
-  // if (cycleSubscription) {
-  //   cycleSubscription.unsubscribe();
-  // }
 });
 </script>
 
@@ -193,8 +150,8 @@ main {
   pointer-events: none;
 }
 
-.background-layer.active,
-.overlay-layer.active {
+.background-layer.is-visible,
+.overlay-layer.is-visible {
   opacity: 1;
 }
 
